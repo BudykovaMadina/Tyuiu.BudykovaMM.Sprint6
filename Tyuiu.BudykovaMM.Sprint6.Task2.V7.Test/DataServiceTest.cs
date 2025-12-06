@@ -31,19 +31,11 @@ namespace Tyuiu.BudykovaMM.Sprint6.Task2.V7.Test
             valueWaitArray[9] = 2.45;    // x = 4
             valueWaitArray[10] = 13.10;  // x = 5
 
-            
-            double[] res = ds.GetMassFunction(startValue, stopValue);
 
-            
-            for (int i = 0; i < len; i++)
-            {
-                
-                double roundedRes = Math.Round(res[i], 2);
-
-                
-                Assert.AreEqual(valueWaitArray[i], roundedRes, 0.001,
-                    $"Ошибка при x={startValue + i}. Ожидалось: {valueWaitArray[i]}, Получено: {res[i]} (округляется до {roundedRes})");
-            }
+            double[] res;
+            res = new double[len];
+            res = ds.GetMassFunction(startValue, stopValue);
+            CollectionAssert.AreEqual(valueWaitArray, res);
         }
     }
 }
