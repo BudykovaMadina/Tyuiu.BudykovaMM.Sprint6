@@ -6,27 +6,29 @@ namespace Tyuiu.BudykovaMM.Sprint6.Task3.V17.Lib
     {
         public int[,] Calculate(int[,] matrix)
         {
-            int rows = 5;
-            int cols = 5;
+            int rows = matrix.GetLength(0);
+            int cols = matrix.GetLength(1);
 
-            
-            for (int i = 0; i < rows - 1; i++)
+            // Копируем матрицу
+            int[,] result = (int[,])matrix.Clone();
+
+            // Извлекаем 4-й столбец
+            int[] fourthColumn = new int[rows];
+            for (int i = 0; i < rows; i++)
             {
-                for (int j = 0; j < rows - 1 - i; j++)
-                {
-                    if (matrix[j, 3] > matrix[j + 1, 3])
-                    {
-                        
-                        for (int k = 0; k < cols; k++)
-                        {
-                            int temp = matrix[j, k];
-                            matrix[j, k] = matrix[j + 1, k];
-                            matrix[j + 1, k] = temp;
-                        }
-                    }
-                }
+                fourthColumn[i] = result[i, 3];
             }
-            return matrix;
+
+            // Сортируем 4-й столбец
+            Array.Sort(fourthColumn);
+
+            // Записываем отсортированный столбец обратно
+            for (int i = 0; i < rows; i++)
+            {
+                result[i, 3] = fourthColumn[i];
+            }
+
+            return result;
         }
     }
 }

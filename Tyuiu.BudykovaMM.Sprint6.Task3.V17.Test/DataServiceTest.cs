@@ -22,12 +22,22 @@ namespace Tyuiu.BudykovaMM.Sprint6.Task3.V17.Test
             int[,] result = ds.Calculate(matrix);
 
 
-            int[] fourthCol = { result[0, 3], result[1, 3], result[2, 3], result[3, 3], result[4, 3] };
-
-            
-            for (int i = 0; i < 4; i++)
+            int[,] wait = new int[5, 5]
             {
-                Assert.IsTrue(fourthCol[i] <= fourthCol[i + 1]);
+                { 22,  32, -16, -20,  27 },
+                { 3,  -20,  24, -19,  25 },
+                { 21,  17,  -8,  24,  17 },
+                { 8,   22,  28,  27,  19 },
+                { 11,  20,  12,  27,  29 }
+            };
+
+           
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    Assert.AreEqual(wait[i, j], result[i, j]);
+                }
             }
         }
     }
